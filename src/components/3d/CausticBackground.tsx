@@ -93,3 +93,4 @@ export const CausticBackground: React.FC = () => {
     </mesh>
   );
 };
+

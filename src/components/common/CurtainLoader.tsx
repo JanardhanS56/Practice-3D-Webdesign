@@ -86,3 +86,4 @@ export const CurtainLoader: React.FC<CurtainLoaderProps> = ({ onComplete }) => {
     </div>
   );
 };
+
