@@ -134,3 +134,4 @@ export const MacerationScrubber: React.FC<MacerationScrubberProps> = ({ hours, o
     </section>
   );
 };
+

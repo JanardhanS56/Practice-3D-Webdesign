@@ -358,3 +358,4 @@ export const ScrollStage3D: React.FC<ScrollStage3DProps> = ({ macerationHours = 
     </div>
   );
 };
+

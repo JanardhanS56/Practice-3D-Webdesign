@@ -132,3 +132,4 @@ export const ArchivalDispensary: React.FC = () => {
     </section>
   );
 };
+

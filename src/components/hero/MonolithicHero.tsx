@@ -78,3 +78,4 @@ export const MonolithicHero: React.FC = () => {
     </section>
   );
 };
+
