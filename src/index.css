@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #070f08;
+    color: #f4f7f4;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1d11;
+}
+::-webkit-scrollbar-thumb {
+  background: #335235;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #538055;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(15, 29, 17, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 178, 61, 0.15);
+}
+
+.glass-panel-gold {
+  background: rgba(22, 41, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 207, 116, 0.3);
+}
+
+/* Golden text gradient */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #f9e2a8 0%, #e5b23d 50%, #c48f27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-herbal-gradient {
+  background: linear-gradient(135deg, #cbd8cb 0%, #759d77 50%, #3f6641 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
