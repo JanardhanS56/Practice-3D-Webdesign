@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Sparkles, SlidersHorizontal, Check } from 'lucide-react';
+import { SlidersHorizontal } from 'lucide-react';
 import { PRODUCTS } from '../../data/mockData';
 import { ProductCard } from './ProductCard';
 
@@ -14,17 +14,9 @@ export const ShopSection: React.FC = () => {
 
   const categories: { id: CategoryFilter; label: string }[] = [
     { id: 'all', label: 'All Formulations' },
-    { id: 'growth', label: 'Hair Density & Growth' },
-    { id: 'repair', label: 'Damage & Split End Repair' },
-    { id: 'anti-dandruff', label: 'Clarifying & Anti-Dandruff' },
-  ];
-
-  const hairTypes: { id: HairTypeFilter; label: string }[] = [
-    { id: 'all', label: 'All Hair Textures' },
-    { id: 'straight', label: 'Type 1 Straight' },
-    { id: 'wavy', label: 'Type 2 Wavy' },
-    { id: 'curly', label: 'Type 3 Curly' },
-    { id: 'coily', label: 'Type 4 Coily' },
+    { id: 'growth', label: 'Hair Density & Follicle Vitality' },
+    { id: 'repair', label: 'Lipid Repair & Split End Seal' },
+    { id: 'anti-dandruff', label: 'Clarifying & Microbiome Reset' },
   ];
 
   const filteredProducts = useMemo(() => {
@@ -47,26 +39,29 @@ export const ShopSection: React.FC = () => {
   }, [selectedCategory, selectedHairType, sortBy]);
 
   return (
-    <section id="shop" className="py-24 px-4 sm:px-6 lg:px-8 relative">
+    <section id="shop" className="py-28 px-4 sm:px-6 lg:px-8 relative bg-[#0A0705] border-t border-[#261A11]">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-botanical-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-            <span>Curated Ayurvedic Dispensary</span>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
+            <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#C78D4B] uppercase">
+              THE DISPENSARY ARCHIVE
+            </span>
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-botanical-50 leading-tight">
-            Targeted Hair Elixirs for{' '}
-            <span className="text-gold-gradient">Every Scalp Need</span>
+
+          <h2 className="text-3xl sm:text-5xl font-display font-medium text-[#F6F0E8] leading-tight">
+            Targeted Elixirs for{' '}
+            <span className="text-amber-metallic italic">Every Cuticle Porosity</span>
           </h2>
-          <p className="mt-4 text-botanical-200 text-base sm:text-lg">
-            Formulated in accordance with ancient Charaka Samhita pharmacopoeia.
-            Filtered by bioactive action and individual hair porosities.
+          <p className="mt-4 text-[#BCA891] text-sm sm:text-base leading-relaxed">
+            Formulated in strict adherence to ancient Charaka Samhita texts. Hand-numbered batches in recyclable light-shielding amber glass.
           </p>
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-12 pb-6 border-b border-gold-500/15">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-12 pb-6 border-b border-[#261A11]">
           {/* Category Tabs */}
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
             {categories.map((cat) => {
@@ -75,10 +70,10 @@ export const ShopSection: React.FC = () => {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all ${
+                  className={`px-4 py-2.5 text-xs font-sans uppercase tracking-[0.1em] transition-all border ${
                     active
-                      ? 'bg-gold-500 text-botanical-950 shadow-md shadow-gold-500/20'
-                      : 'bg-botanical-900/60 text-botanical-300 hover:text-gold-300 hover:bg-botanical-900 border border-botanical-800'
+                      ? 'bg-[#C78D4B] text-[#0A0705] border-[#E1B678] font-bold'
+                      : 'bg-[#17110C] text-[#BCA891] border-[#261A11] hover:border-[#C78D4B]/40 hover:text-[#F6F0E8]'
                   }`}
                 >
                   {cat.label}
@@ -87,39 +82,20 @@ export const ShopSection: React.FC = () => {
             })}
           </div>
 
-          {/* Sub Filters: Hair Type & Sort */}
-          <div className="flex flex-wrap items-center gap-3">
-            {/* Hair Type Dropdown */}
-            <div className="relative">
-              <select
-                value={selectedHairType}
-                onChange={(e) => setSelectedHairType(e.target.value as HairTypeFilter)}
-                className="appearance-none bg-botanical-900/90 text-botanical-200 border border-gold-500/20 hover:border-gold-500/40 rounded-xl px-4 py-2 pr-9 text-xs font-semibold tracking-wide focus:outline-none cursor-pointer"
-              >
-                {hairTypes.map((t) => (
-                  <option key={t.id} value={t.id} className="bg-botanical-950 text-botanical-200">
-                    {t.label}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gold-400">
-                <SlidersHorizontal className="w-3.5 h-3.5" />
-              </div>
-            </div>
-
-            {/* Sort Dropdown */}
+          {/* Sort Dropdown */}
+          <div className="flex items-center gap-3">
             <div className="relative">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="appearance-none bg-botanical-900/90 text-botanical-200 border border-gold-500/20 hover:border-gold-500/40 rounded-xl px-4 py-2 pr-9 text-xs font-semibold tracking-wide focus:outline-none cursor-pointer"
+                className="appearance-none bg-[#17110C] text-[#BCA891] border border-[#261A11] hover:border-[#C78D4B]/40 px-4 py-2 pr-9 text-xs font-mono uppercase tracking-wider focus:outline-none cursor-pointer"
               >
-                <option value="featured" className="bg-botanical-950 text-botanical-200">Sort: Featured</option>
-                <option value="rating" className="bg-botanical-950 text-botanical-200">Sort: Highest Rated</option>
-                <option value="price-asc" className="bg-botanical-950 text-botanical-200">Price: Low to High</option>
-                <option value="price-desc" className="bg-botanical-950 text-botanical-200">Price: High to Low</option>
+                <option value="featured">Order: Curated</option>
+                <option value="rating">Order: Highest Rated</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gold-400">
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#C78D4B]">
                 <SlidersHorizontal className="w-3.5 h-3.5" />
               </div>
             </div>
@@ -127,29 +103,29 @@ export const ShopSection: React.FC = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        {/* Trust Badges Strip under Shop */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl glass-panel border border-gold-500/15 text-center text-xs text-botanical-300">
-          <div className="flex flex-col items-center gap-1">
-            <span className="text-gold-400 font-bold text-sm">✓ 100% Cold-Pressed</span>
-            <span>No thermal degradation of herb actives</span>
+        {/* Provenance Strip */}
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 p-8 bg-[#17110C] border border-[#261A11] text-center text-xs text-[#BCA891]">
+          <div className="space-y-1">
+            <span className="text-[#E1B678] font-display text-base block font-bold">100% Cold-Pressed</span>
+            <span className="text-[11px]">Zero thermal degradation of actives</span>
           </div>
-          <div className="flex flex-col items-center gap-1 border-l border-botanical-800">
-            <span className="text-gold-400 font-bold text-sm">✓ 60-Day Guarantee</span>
-            <span>Visible growth or full refund</span>
+          <div className="space-y-1 border-l border-[#261A11]">
+            <span className="text-[#E1B678] font-display text-base block font-bold">60-Day Guarantee</span>
+            <span className="text-[11px]">Visible root vitality or refund</span>
           </div>
-          <div className="flex flex-col items-center gap-1 border-l border-botanical-800">
-            <span className="text-gold-400 font-bold text-sm">✓ Recyclable Amber Glass</span>
-            <span>Shields precious lipids from UV damage</span>
+          <div className="space-y-1 border-l border-[#261A11]">
+            <span className="text-[#E1B678] font-display text-base block font-bold">Dark Amber Glass</span>
+            <span className="text-[11px]">Blocks photo-oxidative degradation</span>
           </div>
-          <div className="flex flex-col items-center gap-1 border-l border-botanical-800">
-            <span className="text-gold-400 font-bold text-sm">✓ Ethically Wildcrafted</span>
-            <span>Fair-trade sourced from Kerala & Ghats</span>
+          <div className="space-y-1 border-l border-[#261A11]">
+            <span className="text-[#E1B678] font-display text-base block font-bold">Wildcrafted Kerala</span>
+            <span className="text-[11px]">Sustainably harvested cooperatives</span>
           </div>
         </div>
       </div>

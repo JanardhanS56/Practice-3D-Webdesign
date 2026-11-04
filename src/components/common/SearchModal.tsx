@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, X, ArrowRight } from 'lucide-react';
 import { PRODUCTS, BOTANICAL_INGREDIENTS } from '../../data/mockData';
 import { useCart } from '../../context/CartContext';
 
@@ -8,7 +8,11 @@ interface SearchModalProps {
   onClose: () => void;
 }
 
-export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
+export const SearchModal: React.FC = () => {
+  return null; // Will export below
+};
+
+export const LuxurySearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
   const { setSelectedProduct, addToCart } = useCart();
 
@@ -29,39 +33,37 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-2xl glass-panel-gold rounded-2xl shadow-2xl p-6 border border-gold-500/30 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+      <div className="relative w-full max-w-2xl bg-[#0A0705] border border-[#C78D4B]/40 shadow-2xl p-8 overflow-hidden">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 text-botanical-300 hover:text-gold-300 rounded-full hover:bg-botanical-900 transition-colors"
+          className="absolute top-6 right-6 p-2 text-[#BCA891] hover:text-[#E1B678] transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Search Input */}
-        <div className="relative flex items-center mb-6">
-          <Search className="w-5 h-5 text-gold-400 absolute left-4" />
+        <div className="relative flex items-center mb-6 border-b border-[#261A11] pb-3">
+          <Search className="w-4 h-4 text-[#C78D4B] absolute left-1" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search herbal oils, ingredients (e.g. Bhringraj, Rosemary), or scalp concern..."
-            className="w-full pl-12 pr-4 py-3.5 bg-botanical-900/90 border border-gold-500/30 rounded-xl text-botanical-50 placeholder-botanical-400 focus:outline-none focus:border-gold-400 text-sm"
+            placeholder="Search pharmacopoeia (e.g. Bhringraj, Rosemary, Hair Fall)..."
+            className="w-full pl-8 pr-4 py-2 bg-transparent text-sm font-mono text-[#F6F0E8] placeholder-[#BCA891]/40 focus:outline-none"
             autoFocus
           />
         </div>
 
         {/* Quick Tag Recommendations */}
-        <div className="flex flex-wrap items-center gap-2 mb-6 text-xs">
-          <span className="text-botanical-400 flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" /> Popular:
-          </span>
-          {['Bhringraj', 'Hair Fall', 'Rosemary Oil', 'Neem Scalp Detox', 'Split Ends'].map((tag) => (
+        <div className="flex flex-wrap items-center gap-2 mb-8 text-[11px] font-mono text-[#BCA891]">
+          <span className="text-[#C78D4B]">Active Queries:</span>
+          {['Bhringraj', 'Telogen Effluvium', 'Rosemary Oil', 'Neem Scalp Detox'].map((tag) => (
             <button
               key={tag}
               onClick={() => setQuery(tag)}
-              className="px-2.5 py-1 rounded-full bg-botanical-900 border border-gold-500/20 text-gold-300 hover:border-gold-400 transition-colors"
+              className="px-2.5 py-1 bg-[#17110C] border border-[#261A11] hover:border-[#C78D4B]/40 hover:text-[#E1B678] transition-colors"
             >
               {tag}
             </button>
@@ -69,17 +71,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
         </div>
 
         {/* Results Container */}
-        <div className="max-h-[380px] overflow-y-auto space-y-4 pr-1">
-          {/* Products Result */}
+        <div className="max-h-[360px] overflow-y-auto space-y-4 pr-1">
           <div>
-            <h4 className="text-xs uppercase font-bold tracking-widest text-gold-400 mb-2">
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[#E1B678] mb-3 block">
               Ayurvedic Elixirs ({filteredProducts.length})
-            </h4>
+            </span>
             <div className="space-y-2">
               {filteredProducts.map((p) => (
                 <div
                   key={p.id}
-                  className="flex items-center justify-between p-3 rounded-xl bg-botanical-900/70 border border-botanical-800 hover:border-gold-500/40 transition-colors group cursor-pointer"
+                  className="flex items-center justify-between p-3.5 bg-[#17110C] border border-[#261A11] hover:border-[#C78D4B]/40 transition-colors group cursor-pointer"
                   onClick={() => {
                     setSelectedProduct(p);
                     onClose();
@@ -89,13 +90,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                     <img
                       src={p.image}
                       alt={p.name}
-                      className="w-12 h-12 rounded-lg object-cover border border-botanical-700"
+                      className="w-12 h-12 object-cover border border-[#261A11]"
                     />
                     <div>
-                      <h5 className="text-sm font-semibold text-botanical-100 group-hover:text-gold-300 transition-colors">
+                      <h5 className="text-sm font-display text-[#F6F0E8] group-hover:text-[#E1B678] transition-colors">
                         {p.name}
                       </h5>
-                      <span className="text-xs text-botanical-400">${p.price} • {p.volume}</span>
+                      <span className="text-[11px] font-mono text-[#BCA891]">${p.price} • {p.volume}</span>
                     </div>
                   </div>
                   <button
@@ -104,43 +105,36 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                       addToCart(p);
                       onClose();
                     }}
-                    className="px-3 py-1.5 text-xs font-semibold bg-gold-500 hover:bg-gold-400 text-botanical-950 rounded-lg transition-colors"
+                    className="btn-maison-outline py-1 px-3 text-[10px] uppercase font-mono"
                   >
-                    Add to Cart
+                    Acquire
                   </button>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Botanical Herbs Result */}
           {filteredHerbs.length > 0 && (
-            <div className="pt-2">
-              <h4 className="text-xs uppercase font-bold tracking-widest text-gold-400 mb-2">
-                Active Botanical Herbs ({filteredHerbs.length})
-              </h4>
+            <div className="pt-4 border-t border-[#261A11]">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#E1B678] mb-3 block">
+                Active Botanical Monographs ({filteredHerbs.length})
+              </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {filteredHerbs.map((h) => (
                   <a
                     key={h.id}
                     href="#ingredients"
                     onClick={onClose}
-                    className="p-3 rounded-xl bg-botanical-900/50 border border-botanical-800 hover:border-gold-500/30 transition-colors block"
+                    className="p-3 bg-[#17110C] border border-[#261A11] hover:border-[#C78D4B]/40 transition-colors block"
                   >
                     <div className="flex justify-between items-start">
-                      <span className="text-xs font-bold text-gold-300">{h.sanskritName}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-botanical-400" />
+                      <span className="text-xs font-display text-[#E1B678] font-bold">{h.sanskritName}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#BCA891]" />
                     </div>
-                    <p className="text-[11px] text-botanical-300 mt-1 line-clamp-1">{h.role}</p>
+                    <p className="text-[10px] text-[#BCA891] mt-1 line-clamp-1">{h.role}</p>
                   </a>
                 ))}
               </div>
-            </div>
-          )}
-
-          {filteredProducts.length === 0 && filteredHerbs.length === 0 && (
-            <div className="text-center py-8 text-botanical-400 text-sm">
-              No matching herbal formulations found for "{query}".
             </div>
           )}
         </div>

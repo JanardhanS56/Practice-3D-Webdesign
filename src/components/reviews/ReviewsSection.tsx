@@ -1,72 +1,67 @@
 import React from 'react';
-import { Star, CheckCircle, Sparkles, MessageSquare, Quote } from 'lucide-react';
+import { Star, Check } from 'lucide-react';
 import { REVIEWS } from '../../data/mockData';
 
 export const ReviewsSection: React.FC = () => {
   return (
-    <section id="reviews" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-botanical-900/30 border-t border-gold-500/10">
+    <section id="reviews" className="py-28 px-4 sm:px-6 lg:px-8 relative bg-[#0A0705] border-t border-[#261A11]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-botanical-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-            <span>Real Clinical Results</span>
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
+            <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#C78D4B] uppercase">
+              THE CLINICAL LEDGER
+            </span>
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-botanical-50">
-            Over 1,400+ Verified <span className="text-gold-gradient">Scalp Transformations</span>
+
+          <h2 className="text-3xl sm:text-5xl font-display font-medium text-[#F6F0E8]">
+            Over 1,400+ Documented <span className="text-amber-metallic italic">Transformations</span>
           </h2>
-          <div className="flex items-center justify-center gap-3 mt-4">
-            <div className="flex text-gold-400">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-current" />
-              ))}
-            </div>
-            <span className="text-base font-bold text-gold-300">4.96 out of 5.0</span>
-            <span className="text-xs text-botanical-400">• Independent Third-Party Reviews</span>
+
+          <div className="flex items-center justify-center gap-3 mt-4 text-xs font-mono text-[#BCA891]">
+            <span className="text-[#E1B678] font-bold">★ 4.96 / 5.0</span>
+            <span>•</span>
+            <span className="uppercase tracking-wider">Independent Third-Party Verification</span>
           </div>
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Ledger Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {REVIEWS.map((rev) => (
             <div
               key={rev.id}
-              className="glass-panel rounded-3xl p-6 border border-gold-500/20 hover:border-gold-400/40 transition-all flex flex-col justify-between"
+              className="maison-card p-6 border border-[#261A11] hover:border-[#C78D4B]/40 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex text-gold-400">
-                    {Array.from({ length: rev.rating }).map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                    ))}
-                  </div>
-                  <span className="text-[11px] text-botanical-400">{rev.date}</span>
+                <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#261A11] text-[11px] font-mono text-[#BCA891]">
+                  <span className="text-[#E1B678]">{'★'.repeat(rev.rating)}</span>
+                  <span>{rev.date}</span>
                 </div>
 
-                <h3 className="font-serif font-bold text-sm text-botanical-100 mb-2 leading-snug">
+                <h3 className="font-display font-medium text-lg text-[#F6F0E8] mb-3 leading-snug">
                   "{rev.title}"
                 </h3>
 
-                <p className="text-xs text-botanical-300 leading-relaxed">
+                <p className="text-xs text-[#BCA891] leading-relaxed">
                   {rev.content}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-botanical-800 flex items-center justify-between">
+              <div className="mt-8 pt-4 border-t border-[#261A11] flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold text-gold-300">{rev.author}</span>
+                    <span className="text-xs font-display text-[#E1B678] font-bold">{rev.author}</span>
                     {rev.verified && (
-                      <span title="Verified Buyer">
-                        <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                      </span>
+                      <span className="text-[9px] font-mono text-[#C78D4B]">✓</span>
                     )}
                   </div>
-                  <span className="text-[10px] text-botanical-400 block mt-0.5">
+                  <span className="text-[10px] font-mono text-[#BCA891]/60 block mt-0.5">
                     {rev.hairType}
                   </span>
                 </div>
-                <span className="text-[10px] text-gold-400/80 bg-botanical-900/80 px-2 py-0.5 rounded-md border border-gold-500/20">
+                <span className="text-[9px] font-mono text-[#BCA891] bg-[#17110C] px-2 py-0.5 border border-[#261A11]">
                   {rev.durationUsed}
                 </span>
               </div>

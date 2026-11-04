@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Star, ShoppingBag, CheckCircle2, Sparkles, Shield, Clock, Heart, Award } from 'lucide-react';
+import { X, Star, Check, Shield, Clock, Award, Plus } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 export const ProductDetailModal: React.FC = () => {
@@ -35,111 +35,99 @@ export const ProductDetailModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn overflow-y-auto">
-      <div className="relative w-full max-w-4xl glass-panel-gold rounded-3xl border border-gold-500/30 shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fadeIn overflow-y-auto">
+      <div className="relative w-full max-w-4xl bg-[#0A0705] border border-[#C78D4B]/40 shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
         {/* Close Button */}
         <button
           onClick={() => setSelectedProduct(null)}
-          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-botanical-900/90 text-botanical-300 hover:text-gold-300 border border-gold-500/30 hover:border-gold-400 transition-colors"
+          className="absolute top-4 right-4 z-20 p-2 bg-[#17110C] text-[#BCA891] hover:text-[#E1B678] border border-[#261A11] hover:border-[#C78D4B] transition-colors"
           aria-label="Close details"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="overflow-y-auto p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-8">
-          {/* Left Column: Image and badges */}
+        <div className="overflow-y-auto p-6 sm:p-10 grid grid-cols-1 md:grid-cols-12 gap-10">
+          {/* Left Column */}
           <div className="md:col-span-5 flex flex-col space-y-4">
-            <div className="relative aspect-square rounded-2xl overflow-hidden border border-gold-500/25 bg-botanical-900/80">
+            <div className="relative aspect-[4/5] overflow-hidden border border-[#261A11] bg-[#17110C]">
               <img
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
                 className="w-full h-full object-cover"
               />
               {selectedProduct.badge && (
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-botanical-950/85 border border-gold-500/40 text-gold-300 text-xs font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-md">
-                  <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-                  <span>{selectedProduct.badge}</span>
+                <div className="absolute top-4 left-4 px-3 py-1 bg-[#0A0705]/90 border border-[#C78D4B]/40 text-[#E1B678] text-[9px] font-mono tracking-widest uppercase">
+                  {selectedProduct.badge}
                 </div>
               )}
             </div>
 
-            {/* Quick Guarantees */}
-            <div className="p-4 rounded-xl bg-botanical-900/60 border border-botanical-800 text-xs text-botanical-300 space-y-2">
+            <div className="p-4 bg-[#17110C] border border-[#261A11] text-xs text-[#BCA891] space-y-2">
               <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-gold-400 shrink-0" />
+                <Shield className="w-4 h-4 text-[#C78D4B] shrink-0" />
                 <span>60-Day Follicle Satisfaction Guarantee</span>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-gold-400 shrink-0" />
-                <span>Ships within 24h in eco-insulated packaging</span>
+                <Clock className="w-4 h-4 text-[#C78D4B] shrink-0" />
+                <span>Dispatches within 24h in light-protective casing</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-gold-400 shrink-0" />
-                <span>100% Ayurvedic Pharmacopoeia Certified</span>
+                <Award className="w-4 h-4 text-[#C78D4B] shrink-0" />
+                <span>Ayurvedic Pharmacopoeia Certified</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Details & Configuration */}
+          {/* Right Column */}
           <div className="md:col-span-7 flex flex-col justify-between space-y-6">
             <div>
               {/* Rating */}
-              <div className="flex items-center gap-2 mb-2">
-                <div className="flex items-center text-gold-400">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-                <span className="text-xs font-bold text-gold-300">{selectedProduct.rating}</span>
-                <span className="text-xs text-botanical-400">
-                  ({selectedProduct.reviewCount} customer reviews)
-                </span>
-                <span className="ml-auto text-xs px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-700/50 font-semibold">
+              <div className="flex items-center gap-2 mb-2 font-mono text-xs">
+                <span className="text-[#E1B678]">★ {selectedProduct.rating}</span>
+                <span className="text-[#BCA891]/60">({selectedProduct.reviewCount} customer reviews)</span>
+                <span className="ml-auto text-[10px] uppercase tracking-wider text-[#C78D4B]">
                   In Stock
                 </span>
               </div>
 
               {/* Title & Tagline */}
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-botanical-50 leading-tight">
+              <h2 className="text-3xl font-display font-medium text-[#F6F0E8] leading-tight">
                 {selectedProduct.name}
               </h2>
-              <p className="text-xs sm:text-sm text-gold-300 mt-1 font-medium">
+              <p className="text-xs text-[#E1B678] mt-1 font-mono uppercase tracking-wider">
                 {selectedProduct.tagline}
               </p>
 
               {/* Price */}
               <div className="flex items-baseline gap-3 mt-4">
-                <span className="text-3xl font-bold text-gold-400">${adjustedPrice}</span>
-                <span className="text-sm text-botanical-400 line-through">
+                <span className="text-3xl font-display text-[#E1B678]">${adjustedPrice}</span>
+                <span className="text-sm text-[#BCA891]/50 line-through">
                   ${adjustedOriginalPrice}
-                </span>
-                <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-gold-500/20 text-gold-300 border border-gold-500/30">
-                  Save ${adjustedOriginalPrice - adjustedPrice}
                 </span>
               </div>
 
-              {/* Size / Volume Selector */}
-              <div className="mt-5">
-                <span className="text-xs uppercase font-bold tracking-wider text-botanical-300 block mb-2">
-                  Select Bottle Size:
+              {/* Size / Volume */}
+              <div className="mt-6">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#BCA891] block mb-2">
+                  Select Volume:
                 </span>
-                <div className="grid grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-3 gap-2">
                   {sizeOptions.map((opt) => {
                     const active = selectedSize === opt.label;
                     return (
                       <button
                         key={opt.label}
                         onClick={() => setSelectedSize(opt.label)}
-                        className={`p-2.5 rounded-xl border text-left transition-all ${
+                        className={`p-3 border text-left transition-all ${
                           active
-                            ? 'bg-botanical-800 border-gold-400 shadow-md shadow-gold-500/10'
-                            : 'bg-botanical-900/60 border-botanical-800 hover:border-gold-500/30'
+                            ? 'bg-[#17110C] border-[#C78D4B] text-[#E1B678]'
+                            : 'bg-[#0A0705] border-[#261A11] text-[#BCA891] hover:border-[#C78D4B]/30'
                         }`}
                       >
-                        <span className={`text-xs font-bold block ${active ? 'text-gold-300' : 'text-botanical-200'}`}>
+                        <span className="text-xs font-mono font-bold block">
                           {opt.label.split(' / ')[0]}
                         </span>
-                        <span className="text-[10px] text-botanical-400 block mt-0.5 truncate">
+                        <span className="text-[10px] text-[#BCA891]/60 block mt-0.5 truncate">
                           {opt.subtitle}
                         </span>
                       </button>
@@ -150,45 +138,45 @@ export const ProductDetailModal: React.FC = () => {
 
               {/* Information Tabs */}
               <div className="mt-6">
-                <div className="flex border-b border-botanical-800 text-xs font-semibold gap-6">
+                <div className="flex border-b border-[#261A11] text-xs font-mono uppercase tracking-wider gap-6">
                   <button
                     onClick={() => setActiveTab('benefits')}
-                    className={`pb-2 transition-colors relative ${
+                    className={`pb-2.5 transition-colors relative ${
                       activeTab === 'benefits'
-                        ? 'text-gold-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold-400'
-                        : 'text-botanical-400 hover:text-botanical-200'
+                        ? 'text-[#E1B678] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C78D4B]'
+                        : 'text-[#BCA891]/60 hover:text-[#BCA891]'
                     }`}
                   >
-                    Clinical Benefits
+                    Clinical Actions
                   </button>
                   <button
                     onClick={() => setActiveTab('ritual')}
-                    className={`pb-2 transition-colors relative ${
+                    className={`pb-2.5 transition-colors relative ${
                       activeTab === 'ritual'
-                        ? 'text-gold-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold-400'
-                        : 'text-botanical-400 hover:text-botanical-200'
+                        ? 'text-[#E1B678] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C78D4B]'
+                        : 'text-[#BCA891]/60 hover:text-[#BCA891]'
                     }`}
                   >
-                    Ayurvedic 3-Step Ritual
+                    Shiro-Abhyanga
                   </button>
                   <button
                     onClick={() => setActiveTab('ingredients')}
-                    className={`pb-2 transition-colors relative ${
+                    className={`pb-2.5 transition-colors relative ${
                       activeTab === 'ingredients'
-                        ? 'text-gold-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold-400'
-                        : 'text-botanical-400 hover:text-botanical-200'
+                        ? 'text-[#E1B678] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#C78D4B]'
+                        : 'text-[#BCA891]/60 hover:text-[#BCA891]'
                     }`}
                   >
-                    Active Botanicals
+                    Botanicals
                   </button>
                 </div>
 
-                <div className="py-4 text-xs text-botanical-200 leading-relaxed min-h-[110px]">
+                <div className="py-4 text-xs text-[#BCA891] leading-relaxed min-h-[110px]">
                   {activeTab === 'benefits' && (
                     <div className="space-y-2">
                       {selectedProduct.keyBenefits.map((b, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+                          <Check className="w-3.5 h-3.5 text-[#C78D4B] shrink-0 mt-0.5" />
                           <span>{b}</span>
                         </div>
                       ))}
@@ -199,12 +187,12 @@ export const ProductDetailModal: React.FC = () => {
                     <div className="space-y-3">
                       {selectedProduct.ritualSteps.map((step) => (
                         <div key={step.step} className="flex items-start gap-3">
-                          <span className="w-5 h-5 rounded-full bg-gold-500/20 text-gold-400 font-bold flex items-center justify-center shrink-0 border border-gold-500/30">
+                          <span className="w-5 h-5 bg-[#17110C] text-[#E1B678] border border-[#261A11] font-mono text-[10px] flex items-center justify-center shrink-0">
                             {step.step}
                           </span>
                           <div>
-                            <strong className="text-botanical-100">{step.title}: </strong>
-                            <span className="text-botanical-300">{step.instruction}</span>
+                            <strong className="text-[#F6F0E8]">{step.title}: </strong>
+                            <span>{step.instruction}</span>
                           </div>
                         </div>
                       ))}
@@ -213,12 +201,12 @@ export const ProductDetailModal: React.FC = () => {
 
                   {activeTab === 'ingredients' && (
                     <div>
-                      <p className="mb-2 text-botanical-300">{selectedProduct.description}</p>
+                      <p className="mb-2 leading-relaxed">{selectedProduct.description}</p>
                       <div className="flex flex-wrap gap-1.5 mt-2">
                         {selectedProduct.activeIngredients.map((ing, i) => (
                           <span
                             key={i}
-                            className="px-2.5 py-1 rounded-md bg-botanical-900 border border-gold-500/30 text-gold-300 text-[11px] font-medium"
+                            className="px-2.5 py-1 bg-[#17110C] border border-[#261A11] text-[#E1B678] text-[10px] font-mono"
                           >
                             🌿 {ing}
                           </span>
@@ -230,34 +218,32 @@ export const ProductDetailModal: React.FC = () => {
               </div>
             </div>
 
-            {/* Action Bar: Quantity & Add to Cart */}
-            <div className="pt-4 border-t border-botanical-800 flex items-center gap-4">
-              {/* Quantity Counter */}
-              <div className="flex items-center rounded-xl bg-botanical-900 border border-gold-500/30 p-1">
+            {/* Action Bar */}
+            <div className="pt-4 border-t border-[#261A11] flex items-center gap-4">
+              <div className="flex items-center bg-[#17110C] border border-[#261A11] text-xs">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-botanical-200 hover:text-gold-300 hover:bg-botanical-800"
+                  className="w-8 h-8 flex items-center justify-center text-[#BCA891] hover:text-[#E1B678]"
                 >
                   -
                 </button>
-                <span className="w-8 text-center text-xs font-bold text-gold-300">
+                <span className="w-8 text-center font-mono font-bold text-[#E1B678]">
                   {quantity}
                 </span>
                 <button
                   onClick={() => setQuantity((q) => q + 1)}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-botanical-200 hover:text-gold-300 hover:bg-botanical-800"
+                  className="w-8 h-8 flex items-center justify-center text-[#BCA891] hover:text-[#E1B678]"
                 >
                   +
                 </button>
               </div>
 
-              {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                className="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 hover:from-gold-400 hover:to-gold-300 text-botanical-950 font-bold text-sm tracking-wide shadow-lg shadow-gold-500/20 hover:shadow-gold-500/40 transition-all flex items-center justify-center gap-2 active:scale-98"
+                className="btn-maison-primary flex-1 py-3.5 text-xs tracking-widest uppercase flex items-center justify-center gap-2"
               >
-                <ShoppingBag className="w-4 h-4 text-botanical-950" />
-                <span>Add to Cart • ${(adjustedPrice * quantity).toFixed(2)}</span>
+                <Plus className="w-3.5 h-3.5" />
+                <span>Acquire Formulation • ${(adjustedPrice * quantity).toFixed(2)}</span>
               </button>
             </div>
           </div>

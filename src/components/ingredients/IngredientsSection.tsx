@@ -1,47 +1,49 @@
 import React, { useState } from 'react';
-import { Leaf, Sparkles, CheckCircle2, MapPin, FlaskConical, ChevronRight, Info } from 'lucide-react';
+import { Leaf, FlaskConical, MapPin, Check, ArrowRight } from 'lucide-react';
 import { BOTANICAL_INGREDIENTS } from '../../data/mockData';
 import { BotanicalIngredient } from '../../types';
 
 export const IngredientsSection: React.FC = () => {
-  const [activeIngredient, setActiveIngredient] = useState<BotanicalIngredient>(BOTANICAL_INGREDIENTS[0]);
+  const [activeHerb, setActiveHerb] = useState<BotanicalIngredient>(BOTANICAL_INGREDIENTS[0]);
 
   return (
-    <section id="ingredients" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-botanical-900/40 border-t border-b border-gold-500/10">
+    <section id="ingredients" className="py-28 px-4 sm:px-6 lg:px-8 relative bg-[#0A0705] border-t border-[#261A11]">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-botanical-800/80 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Leaf className="w-3.5 h-3.5 text-gold-400" />
-            <span>Phytochemical Potency</span>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
+            <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#C78D4B] uppercase">
+              PHARMACOPOEIA BOTANIQUE
+            </span>
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-botanical-50 leading-tight">
-            The 24 Sacred Botanicals of{' '}
-            <span className="text-gold-gradient">Taila Paka Vidhi</span>
+
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-medium text-[#F6F0E8] leading-tight">
+            The 24 Sacred Actives of{' '}
+            <span className="text-amber-metallic italic">Taila Paka Vidhi</span>
           </h2>
-          <p className="mt-4 text-botanical-200 text-base sm:text-lg leading-relaxed">
-            Every drop is cold-macerated and slow-cooked in copper cauldrons for 336 hours.
-            Explore the bioactive compounds clinically verified to awaken cellular follicle growth.
+          <p className="mt-4 text-[#BCA891] text-sm sm:text-base leading-relaxed">
+            Slow-cooked in virgin cold-pressed sesame lipid matrices for 336 hours. Every molecule is bound directly to organic polyphenols for maximum cutaneous penetration.
           </p>
         </div>
 
-        {/* Botanical Selector Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+        {/* Botanical Selector Monograph Ribbon (Architectural, sharp lines) */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-14">
           {BOTANICAL_INGREDIENTS.map((item) => {
-            const isSelected = activeIngredient.id === item.id;
+            const active = activeHerb.id === item.id;
             return (
               <button
                 key={item.id}
-                onClick={() => setActiveIngredient(item)}
-                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all flex items-center gap-2 border ${
-                  isSelected
-                    ? 'bg-gold-500 text-botanical-950 border-gold-400 shadow-lg shadow-gold-500/20 scale-105'
-                    : 'bg-botanical-900/90 text-botanical-200 border-gold-500/20 hover:border-gold-500/50 hover:text-gold-300'
+                onClick={() => setActiveHerb(item)}
+                className={`px-5 py-3 text-xs uppercase tracking-[0.12em] font-sans transition-all border ${
+                  active
+                    ? 'bg-[#C78D4B] text-[#0A0705] border-[#E1B678] font-bold shadow-lg'
+                    : 'bg-[#17110C]/80 text-[#BCA891] border-[#261A11] hover:border-[#C78D4B]/40 hover:text-[#F6F0E8]'
                 }`}
               >
-                <span>🌿</span>
                 <span>{item.commonName}</span>
-                <span className={`text-[10px] hidden md:inline opacity-75 ${isSelected ? 'text-botanical-900' : 'text-botanical-400'}`}>
+                <span className="text-[10px] ml-2 opacity-70 italic font-display lowercase">
                   ({item.sanskritName.split(' ')[0]})
                 </span>
               </button>
@@ -49,75 +51,69 @@ export const IngredientsSection: React.FC = () => {
           })}
         </div>
 
-        {/* Active Ingredient Spotlight Card */}
-        <div className="glass-panel-gold rounded-3xl p-6 sm:p-10 border border-gold-500/30 shadow-2xl relative overflow-hidden transition-all duration-500">
-          {/* Subtle botanical glow backdrop */}
-          <div
-            className="absolute -top-24 -right-24 w-80 h-80 rounded-full blur-[120px] opacity-25 pointer-events-none"
-            style={{ backgroundColor: activeIngredient.color }}
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Column: Sanskrit & Science */}
+        {/* Active Monograph Card */}
+        <div className="maison-card p-8 sm:p-14 border border-[#C78D4B]/25 relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left: Scientific Monograph & Ayurvedic Action */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full bg-botanical-800 text-gold-300 border border-gold-500/20">
-                  {activeIngredient.role}
+                <span className="text-[10px] uppercase font-mono tracking-widest px-3 py-1 bg-[#261A11] text-[#E1B678] border border-[#C78D4B]/30">
+                  {activeHerb.role}
                 </span>
-                <span className="text-xs italic text-botanical-300 font-serif">
-                  {activeIngredient.scientificName}
+                <span className="text-xs italic font-display text-[#BCA891]">
+                  Binomial: {activeHerb.scientificName}
                 </span>
               </div>
 
               <div>
-                <h3 className="text-2xl sm:text-4xl font-serif font-bold text-gold-gradient">
-                  {activeIngredient.sanskritName}
+                <h3 className="text-3xl sm:text-5xl font-display font-medium text-amber-metallic">
+                  {activeHerb.sanskritName}
                 </h3>
-                <p className="text-sm font-medium text-botanical-300 mt-1">
-                  Commonly known as: <strong>{activeIngredient.commonName}</strong>
-                </p>
+                <span className="text-xs uppercase tracking-widest text-[#BCA891] block mt-1">
+                  Classical Designation: {activeHerb.commonName}
+                </span>
               </div>
 
-              <p className="text-botanical-200 text-base leading-relaxed">
-                {activeIngredient.description}
+              <p className="text-[#F6F0E8]/90 text-sm sm:text-base leading-relaxed font-normal">
+                {activeHerb.description}
               </p>
 
-              {/* Bioactive & Extraction Details */}
+              {/* Bioactive & Provenance Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-2xl bg-botanical-900/80 border border-botanical-800 flex items-start gap-3">
-                  <FlaskConical className="w-5 h-5 text-gold-400 shrink-0 mt-0.5" />
+                <div className="p-4 bg-[#17110C] border border-[#261A11] flex items-start gap-3">
+                  <FlaskConical className="w-5 h-5 text-[#C78D4B] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs uppercase tracking-wider font-semibold text-botanical-400 block">
-                      Bioactive Phytochemical
+                    <span className="text-[10px] uppercase tracking-widest text-[#BCA891] block">
+                      Bioactive Molecule
                     </span>
-                    <span className="text-sm font-semibold text-botanical-100 mt-0.5 block">
-                      {activeIngredient.bioactive}
-                    </span>
+                    <strong className="text-xs text-[#F6F0E8] mt-0.5 block font-mono">
+                      {activeHerb.bioactive}
+                    </strong>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-botanical-900/80 border border-botanical-800 flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-gold-400 shrink-0 mt-0.5" />
+                <div className="p-4 bg-[#17110C] border border-[#261A11] flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-[#C78D4B] shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-xs uppercase tracking-wider font-semibold text-botanical-400 block">
-                      Ethical Origin
+                    <span className="text-[10px] uppercase tracking-widest text-[#BCA891] block">
+                      Wild Harvest Provenance
                     </span>
-                    <span className="text-sm font-semibold text-botanical-100 mt-0.5 block">
-                      {activeIngredient.origin}
-                    </span>
+                    <strong className="text-xs text-[#F6F0E8] mt-0.5 block">
+                      {activeHerb.origin}
+                    </strong>
                   </div>
                 </div>
               </div>
 
-              {/* Verified Clinical Benefits */}
-              <div className="space-y-2 pt-2">
-                <span className="text-xs uppercase tracking-widest font-bold text-gold-400 block">
-                  Observed Clinical Scalp Actions:
+              {/* Verified Clinical Actions */}
+              <div className="pt-2 space-y-2">
+                <span className="text-[10px] uppercase tracking-widest text-[#C78D4B] font-bold block">
+                  Documented In-Vitro & Follicular Actions:
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {activeIngredient.benefits.map((b, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs sm:text-sm text-botanical-200">
-                      <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {activeHerb.benefits.map((b, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-[#BCA891]">
+                      <Check className="w-3.5 h-3.5 text-[#E1B678] shrink-0" />
                       <span>{b}</span>
                     </div>
                   ))}
@@ -125,45 +121,39 @@ export const IngredientsSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Visual Infographic & Extraction Method */}
+            {/* Right: Artisanal Extraction Technique */}
             <div className="lg:col-span-5 flex flex-col space-y-4">
-              <div className="p-6 rounded-2xl bg-botanical-950/80 border border-gold-500/25 relative overflow-hidden">
-                <div className="flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-wider mb-3">
-                  <Sparkles className="w-4 h-4" />
-                  <span>Artisanal Extraction Method</span>
-                </div>
-                <h4 className="text-lg font-serif font-bold text-botanical-100 mb-2">
-                  {activeIngredient.extraction}
+              <div className="p-8 bg-[#0A0705] border border-[#C78D4B]/30 relative">
+                <span className="text-[10px] uppercase font-mono tracking-widest text-[#E1B678] block mb-2">
+                  Maceration Technique
+                </span>
+                <h4 className="text-xl font-display font-medium text-[#F6F0E8] mb-3">
+                  {activeHerb.extraction}
                 </h4>
-                <p className="text-xs text-botanical-300 leading-relaxed">
-                  Extracted without chemical solvents, synthetic hexane, or high heat to preserve 100% of the active flavonoids, vitamins, and natural essential fatty acids.
+                <p className="text-xs text-[#BCA891] leading-relaxed">
+                  Extracted without artificial chemical solvents, synthetic hexane, or volatile thermal cracking to preserve 100% of the active flavonoids, vitamins, and natural fatty acids.
                 </p>
-
-                <div className="mt-5 pt-4 border-t border-botanical-800 flex items-center justify-between text-xs">
-                  <span className="text-botanical-400">Purity Guarantee:</span>
-                  <span className="text-gold-300 font-semibold">Pharmacopoeia Grade A</span>
+                <div className="mt-6 pt-4 border-t border-[#261A11] flex items-center justify-between text-xs text-[#BCA891]">
+                  <span>Purity Standard:</span>
+                  <span className="text-[#E1B678] font-bold">Pharmacopoeia Grade A</span>
                 </div>
               </div>
 
-              {/* Ayurvedic Dosha Balance */}
-              <div className="p-5 rounded-2xl bg-botanical-950/80 border border-botanical-800 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-botanical-900 border border-gold-500/20 flex items-center justify-center">
-                    <Info className="w-5 h-5 text-gold-400" />
-                  </div>
-                  <div>
-                    <h5 className="text-xs font-bold text-botanical-100 uppercase tracking-wider">
-                      Ayurvedic Dosha Effect
-                    </h5>
-                    <p className="text-xs text-botanical-300">Pacifies Vata & Pitta Aggravation</p>
-                  </div>
+              <div className="p-6 bg-[#17110C] border border-[#261A11] flex items-center justify-between">
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-[#C78D4B] font-bold block">
+                    Ayurvedic Energetics (Virya)
+                  </span>
+                  <span className="text-xs text-[#F6F0E8] mt-0.5 block">
+                    Sheeta (Cooling) • Pacifies Pitta & Vata
+                  </span>
                 </div>
                 <a
                   href="#shop"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-gold-400 hover:text-gold-300 transition-colors"
+                  className="btn-maison-outline text-[10px] py-2 px-3 flex items-center gap-1.5"
                 >
-                  <span>Shop Blends</span>
-                  <ChevronRight className="w-4 h-4" />
+                  <span>Explore Blend</span>
+                  <ArrowRight className="w-3 h-3" />
                 </a>
               </div>
             </div>

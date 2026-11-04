@@ -12,53 +12,62 @@ import { FaqSection } from './components/common/FaqSection';
 import { Footer } from './components/layout/Footer';
 import { CartDrawer } from './components/cart/CartDrawer';
 import { ProductDetailModal } from './components/modals/ProductDetailModal';
-import { SearchModal } from './components/common/SearchModal';
+import { LuxurySearchModal } from './components/common/SearchModal';
+import { CustomCursor } from './components/common/CustomCursor';
+import { CurtainLoader } from './components/common/CurtainLoader';
 
 const MainContent: React.FC = () => {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [loaderComplete, setLoaderComplete] = useState(false);
 
   return (
-    <div className="min-h-screen bg-botanical-950 text-botanical-50 flex flex-col relative selection:bg-gold-500 selection:text-botanical-950">
-      {/* Sticky Header Navigation */}
+    <div className="min-h-screen bg-[#0A0705] text-[#F6F0E8] flex flex-col relative selection:bg-[#C78D4B] selection:text-[#0A0705]">
+      {/* 1. Velvet Ceremonial Curtain Entry Loader */}
+      <CurtainLoader onComplete={() => setLoaderComplete(true)} />
+
+      {/* 2. Magnetic Blend Custom Cursor */}
+      <CustomCursor />
+
+      {/* 3. Sticky Navbar Header */}
       <Navbar onSearchOpen={() => setSearchOpen(true)} />
 
-      {/* Global Interactive Search Modal */}
-      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      {/* 4. Architectural Search Modal */}
+      <LuxurySearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
-      {/* Main Sections */}
+      {/* Main Exhibition Sections */}
       <main className="flex-1">
-        {/* 1. Hero Showcase with 3D Bottle */}
+        {/* Hero with Amber Caustic WebGL Shader & 3D Hotspot Bottle */}
         <HeroSection />
 
-        {/* 2. Sacred Ayurvedic Botanicals Explorer */}
+        {/* The 24 Sacred Botanicals Pharmacopoeia */}
         <IngredientsSection />
 
-        {/* 3. The Dispensary / Shop Collection */}
+        {/* The Dispensary Archive & Catalog */}
         <ShopSection />
 
-        {/* 4. Similar Products & Ritual Companions */}
+        {/* Complementary Artifacts & Ritual Companions */}
         <SimilarProductsSection />
 
-        {/* 5. Interactive Hair Diagnostic & Ritual Finder Quiz */}
+        {/* Ayurvedic Scalp Longevity Diagnostic Consultation */}
         <HairQuizSection />
 
-        {/* 6. Sacred Shiro-Abhyanga 3-Step Guide */}
+        {/* The Classical Shiro-Abhyanga Ceremony */}
         <RitualGuideSection />
 
-        {/* 7. Clinical Proof & Verified Customer Reviews */}
+        {/* The Clinical Ledger of 1,400+ Documented Transformations */}
         <ReviewsSection />
 
-        {/* 8. Frequently Asked Questions Accordion */}
+        {/* Frequently Documented Inquiries */}
         <FaqSection />
       </main>
 
-      {/* Botanical Footer */}
+      {/* Monolithic Maison Footer */}
       <Footer />
 
-      {/* Slide-Over Cart Drawer */}
+      {/* Botanical Cart Drawer */}
       <CartDrawer />
 
-      {/* Product Deep-Dive Quick-View Modal */}
+      {/* Product Pharmacopoeia Quick-View Modal */}
       <ProductDetailModal />
     </div>
   );

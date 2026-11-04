@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Check, ArrowRight, RotateCcw, ShoppingBag, ShieldCheck, HeartHandshake } from 'lucide-react';
+import { Check, RotateCcw, Plus } from 'lucide-react';
 import { PRODUCTS, SIMILAR_PRODUCTS } from '../../data/mockData';
 import { Product } from '../../types';
 import { useCart } from '../../context/CartContext';
@@ -19,49 +19,49 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 1,
     question: 'What is your primary scalp condition right now?',
-    subtitle: 'Your scalp is the biological soil for healthy follicular root cycles.',
+    subtitle: 'Your scalp is the biological terrain for healthy follicular longevity.',
     options: [
       {
-        label: 'Excessive Shedding & Thinning',
-        description: 'Noticeable hair in the shower drain, sparse parting or crown.',
+        label: 'Excessive Shedding & Telogen Loss',
+        description: 'Noticeable hair in the brush, sparse parting or crown density loss.',
         targetProductId: 'root-revival-elixir',
       },
       {
         label: 'Receding Temples & Slow Regrowth',
-        description: 'Sparse hairline edges that need targeted DHT blockade.',
+        description: 'Sparse hairline edges that require targeted natural DHT blockade.',
         targetProductId: 'rosemary-dht-stimulator',
       },
       {
-        label: 'Flakes, Dandruff & Scalp Itch',
-        description: 'Persistent white/yellow flakes and fungal micro-inflammation.',
+        label: 'Microbial Flakes & Scalp Pruritus',
+        description: 'Persistent white/yellow dandruff flakes and chronic itchy inflammation.',
         targetProductId: 'neem-clarifying-scalp-oil',
       },
       {
-        label: 'Brittle Split Ends & Heat Damage',
-        description: 'Frayed cuticles, bleaching damage, lack of natural shine.',
+        label: 'Brittle Cuticles & Heat Damage',
+        description: 'Frayed split ends, chemical bleaching stress, lack of silk mirror-shine.',
         targetProductId: 'hibiscus-argan-repair-nectar',
       },
     ],
   },
   {
     id: 2,
-    question: 'How would you describe your natural hair texture?',
+    question: 'How would you classify your natural hair strand diameter?',
     subtitle: 'Different textures absorb and retain botanical lipid weights differently.',
     options: [
-      { label: 'Fine & Easily Weighed Down', description: 'Requires fast-absorbing lightweight lipid molecules.', targetProductId: 'rosemary-dht-stimulator' },
-      { label: 'Medium & Naturally Wavy', description: 'Responds best to cold-pressed golden sesame & bhringraj.', targetProductId: 'root-revival-elixir' },
+      { label: 'Fine & Easily Weighed Down', description: 'Requires dry-oil fast-penetrating lipid molecules.', targetProductId: 'rosemary-dht-stimulator' },
+      { label: 'Medium & Naturally Wavy', description: 'Responds best to virgin cold-pressed golden sesame & bhringraj.', targetProductId: 'root-revival-elixir' },
       { label: 'Thick, Coarse, or Curly / Coily', description: 'Craves intensive moisture sealing and rich fatty acids.', targetProductId: 'hibiscus-argan-repair-nectar' },
-      { label: 'Sensitive & Reacts Easily', description: 'Requires soothing antifungal and cooling neem botanicals.', targetProductId: 'neem-clarifying-scalp-oil' },
+      { label: 'Sensitive & Reacts to Chemicals', description: 'Requires soothing antifungal and cooling neem botanicals.', targetProductId: 'neem-clarifying-scalp-oil' },
     ],
   },
   {
     id: 3,
-    question: 'How often do you typically wash your hair?',
-    subtitle: 'Helps us calibrate your optimal pre-wash oil soak duration.',
+    question: 'How often do you cleanse your hair?',
+    subtitle: 'Calibrates your optimal pre-shampoo oil soak cadence.',
     options: [
-      { label: 'Every 1-2 Days (Frequent)', description: 'Fast-action 30-minute pre-shampoo treatments.', targetProductId: 'rosemary-dht-stimulator' },
-      { label: '2-3 Times a Week', description: 'Ideal cadence for overnight Shiro-Abhyanga rituals.', targetProductId: 'root-revival-elixir' },
-      { label: 'Once a Week (Deep Wash)', description: 'Maximum hydration recovery and weekly herbal masking.', targetProductId: 'hibiscus-argan-repair-nectar' },
+      { label: 'Daily or Every 2 Days', description: 'Rapid 30-minute pre-shampoo treatments.', targetProductId: 'rosemary-dht-stimulator' },
+      { label: '2-3 Times Weekly', description: 'Optimal cadence for overnight Shiro-Abhyanga rituals.', targetProductId: 'root-revival-elixir' },
+      { label: 'Once Weekly (Deep Wash)', description: 'Maximum hydration recovery and weekly herbal masking.', targetProductId: 'hibiscus-argan-repair-nectar' },
     ],
   },
 ];
@@ -79,7 +79,7 @@ export const HairQuizSection: React.FC = () => {
     if (currentStep < QUIZ_QUESTIONS.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      setCurrentStep(QUIZ_QUESTIONS.length); // Results step
+      setCurrentStep(QUIZ_QUESTIONS.length);
     }
   };
 
@@ -88,15 +88,14 @@ export const HairQuizSection: React.FC = () => {
     setSelectedAnswers([]);
   };
 
-  // Determine prescribed product based on primary question answers
   const primaryChoice = selectedAnswers[0] ?? 0;
   const targetId = QUIZ_QUESTIONS[0].options[primaryChoice]?.targetProductId || 'root-revival-elixir';
   const recommendedProduct: Product =
     PRODUCTS.find((p) => p.id === targetId) || PRODUCTS[0];
-  const companionTool: Product = SIMILAR_PRODUCTS[0]; // Neem Wood Comb
+  const companionTool: Product = SIMILAR_PRODUCTS[0];
 
   const bundlePrice = recommendedProduct.price + companionTool.price;
-  const discountedBundle = Math.round(bundlePrice * 0.85); // 15% discount for quiz completion
+  const discountedBundle = Math.round(bundlePrice * 0.85);
 
   const handleAddBundle = () => {
     addToCart(recommendedProduct);
@@ -104,44 +103,48 @@ export const HairQuizSection: React.FC = () => {
   };
 
   return (
-    <section id="quiz" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-botanical-950 border-t border-gold-500/10">
+    <section id="quiz" className="py-28 px-4 sm:px-6 lg:px-8 relative bg-[#0A0705] border-t border-[#261A11]">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-botanical-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-            <span>Ayurvedic Dosha Consultation</span>
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
+            <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#C78D4B] uppercase">
+              AYURVEDIC DIAGNOSTIC CONSULTATION
+            </span>
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-botanical-50">
-            Discover Your Personalized <span className="text-gold-gradient">Hair Elixir Ritual</span>
+
+          <h2 className="text-3xl sm:text-5xl font-display font-medium text-[#F6F0E8]">
+            Your Custom Scalp <span className="text-amber-metallic italic">Longevity Protocol</span>
           </h2>
-          <p className="mt-2 text-botanical-300 text-sm sm:text-base">
-            Take 60 seconds to answer 3 targeted questions and unlock your custom botanical prescription.
+          <p className="mt-3 text-[#BCA891] text-sm sm:text-base">
+            Answer 3 clinical questions to determine your primary doshic imbalance and receive a personalized formula prescription.
           </p>
         </div>
 
         {/* Quiz Container */}
-        <div className="glass-panel-gold rounded-3xl p-6 sm:p-10 border border-gold-500/30 shadow-2xl relative">
+        <div className="maison-card p-8 sm:p-12 border border-[#C78D4B]/30 relative">
           {currentStep < QUIZ_QUESTIONS.length ? (
             <div>
-              {/* Progress Bar */}
-              <div className="flex items-center justify-between text-xs text-gold-300 font-semibold mb-3">
-                <span>Question {currentStep + 1} of {QUIZ_QUESTIONS.length}</span>
-                <span>{Math.round(((currentStep + 1) / QUIZ_QUESTIONS.length) * 100)}% Complete</span>
+              {/* Progress */}
+              <div className="flex items-center justify-between text-xs text-[#BCA891] font-mono mb-3">
+                <span className="uppercase">Query {currentStep + 1} of {QUIZ_QUESTIONS.length}</span>
+                <span>{Math.round(((currentStep + 1) / QUIZ_QUESTIONS.length) * 100)}%</span>
               </div>
-              <div className="w-full h-1.5 bg-botanical-900 rounded-full overflow-hidden mb-8">
+              <div className="w-full h-[2px] bg-[#261A11] mb-10">
                 <div
-                  className="h-full bg-gradient-to-r from-gold-500 to-amber-400 transition-all duration-300"
+                  className="h-full bg-[#C78D4B] transition-all duration-500 ease-out"
                   style={{ width: `${((currentStep + 1) / QUIZ_QUESTIONS.length) * 100}%` }}
                 />
               </div>
 
               {/* Question */}
-              <div className="mb-6">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-botanical-50">
+              <div className="mb-8">
+                <h3 className="text-2xl sm:text-3xl font-display font-medium text-[#F6F0E8]">
                   {QUIZ_QUESTIONS[currentStep].question}
                 </h3>
-                <p className="text-xs sm:text-sm text-botanical-300 mt-1">
+                <p className="text-xs sm:text-sm text-[#BCA891] mt-2">
                   {QUIZ_QUESTIONS[currentStep].subtitle}
                 </p>
               </div>
@@ -152,18 +155,18 @@ export const HairQuizSection: React.FC = () => {
                   <button
                     key={idx}
                     onClick={() => handleSelectOption(idx)}
-                    className="p-5 rounded-2xl bg-botanical-900/80 hover:bg-botanical-850 border border-botanical-800 hover:border-gold-500/50 transition-all text-left group active:scale-98 flex flex-col justify-between"
+                    className="p-6 bg-[#17110C] hover:bg-[#261A11]/60 border border-[#261A11] hover:border-[#C78D4B]/50 transition-all text-left group flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-serif font-bold text-base text-botanical-100 group-hover:text-gold-300 transition-colors">
+                        <span className="font-display font-medium text-lg text-[#F6F0E8] group-hover:text-[#E1B678] transition-colors">
                           {opt.label}
                         </span>
-                        <div className="w-5 h-5 rounded-full border border-botanical-600 group-hover:border-gold-400 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-gold-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="w-4 h-4 border border-[#261A11] group-hover:border-[#C78D4B] flex items-center justify-center">
+                          <Check className="w-3 h-3 text-[#C78D4B] opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                       </div>
-                      <p className="text-xs text-botanical-300 leading-relaxed">
+                      <p className="text-xs text-[#BCA891] leading-relaxed">
                         {opt.description}
                       </p>
                     </div>
@@ -171,14 +174,13 @@ export const HairQuizSection: React.FC = () => {
                 ))}
               </div>
 
-              {/* Back button if past step 0 */}
               {currentStep > 0 && (
-                <div className="mt-6 flex justify-start">
+                <div className="mt-8 flex justify-start">
                   <button
                     onClick={() => setCurrentStep(currentStep - 1)}
-                    className="text-xs text-botanical-400 hover:text-gold-300 transition-colors"
+                    className="text-xs font-mono text-[#BCA891] hover:text-[#E1B678] uppercase tracking-wider"
                   >
-                    ← Previous Question
+                    ← Previous Query
                   </button>
                 </div>
               )}
@@ -186,92 +188,90 @@ export const HairQuizSection: React.FC = () => {
           ) : (
             /* Results Screen */
             <div className="animate-fadeIn">
-              <div className="flex items-center justify-between pb-6 border-b border-gold-500/20 mb-6">
+              <div className="flex items-center justify-between pb-6 border-b border-[#261A11] mb-8">
                 <div>
-                  <span className="text-xs uppercase tracking-widest text-gold-400 font-bold block">
-                    Ayurvedic Consultation Complete
+                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#C78D4B] font-bold block">
+                    Diagnostic Analysis Complete
                   </span>
-                  <h3 className="text-2xl font-serif font-bold text-botanical-50 mt-1">
-                    Your Tailored Scalp Longevity Protocol
+                  <h3 className="text-2xl sm:text-3xl font-display font-medium text-[#F6F0E8] mt-1">
+                    Your Prescribed Botanical Regimen
                   </h3>
                 </div>
                 <button
                   onClick={resetQuiz}
-                  className="flex items-center gap-1.5 text-xs text-botanical-400 hover:text-gold-300 transition-colors"
+                  className="flex items-center gap-1.5 text-xs text-[#BCA891] hover:text-[#E1B678] font-mono uppercase"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
-                  <span>Retake</span>
+                  <span>Recalibrate</span>
                 </button>
               </div>
 
-              {/* Prescribed Bundle */}
+              {/* Prescribed Pair */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                <div className="p-5 rounded-2xl bg-botanical-900/90 border border-gold-500/30 flex gap-4">
+                <div className="p-6 bg-[#17110C] border border-[#C78D4B]/30 flex gap-4">
                   <img
                     src={recommendedProduct.image}
                     alt={recommendedProduct.name}
-                    className="w-20 h-20 rounded-xl object-cover shrink-0 border border-botanical-700"
+                    className="w-20 h-20 object-cover shrink-0 border border-[#261A11]"
                   />
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold-400">
+                    <span className="text-[9px] font-mono uppercase tracking-widest text-[#E1B678]">
                       Primary Prescribed Elixir
                     </span>
-                    <h4 className="text-sm font-serif font-bold text-botanical-100 mt-0.5">
+                    <h4 className="text-base font-display font-medium text-[#F6F0E8] mt-0.5">
                       {recommendedProduct.name}
                     </h4>
-                    <p className="text-xs text-botanical-300 mt-1 line-clamp-2">
+                    <p className="text-xs text-[#BCA891] mt-1 line-clamp-2">
                       {recommendedProduct.subtitle}
                     </p>
-                    <span className="text-xs font-bold text-gold-300 mt-2 block">
+                    <span className="text-xs font-display text-[#E1B678] mt-2 block font-bold">
                       ${recommendedProduct.price} • {recommendedProduct.volume}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-botanical-900/90 border border-gold-500/30 flex gap-4">
+                <div className="p-6 bg-[#17110C] border border-[#C78D4B]/30 flex gap-4">
                   <img
                     src={companionTool.image}
                     alt={companionTool.name}
-                    className="w-20 h-20 rounded-xl object-cover shrink-0 border border-botanical-700"
+                    className="w-20 h-20 object-cover shrink-0 border border-[#261A11]"
                   />
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold-400">
-                      Companion Scalp Tool
+                    <span className="text-[9px] font-mono uppercase tracking-widest text-[#E1B678]">
+                      Prescribed Acupressure Artifact
                     </span>
-                    <h4 className="text-sm font-serif font-bold text-botanical-100 mt-0.5">
+                    <h4 className="text-base font-display font-medium text-[#F6F0E8] mt-0.5">
                       {companionTool.name}
                     </h4>
-                    <p className="text-xs text-botanical-300 mt-1 line-clamp-2">
-                      Ensures deep meridian circulation and static-free detangling.
+                    <p className="text-xs text-[#BCA891] mt-1 line-clamp-2">
+                      Medicinal seasoned neem heartwood for micro-meridian stimulation.
                     </p>
-                    <span className="text-xs font-bold text-gold-300 mt-2 block">
-                      ${companionTool.price} • Handcrafted Wood
+                    <span className="text-xs font-display text-[#E1B678] mt-2 block font-bold">
+                      ${companionTool.price} • Artisan Wood
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Bundle Action */}
-              <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-botanical-900 via-botanical-850 to-botanical-900 border border-gold-500/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+              {/* Prescribed Action */}
+              <div className="mt-8 p-6 bg-[#17110C] border border-[#C78D4B]/50 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-gold-400">
-                      Quiz Completion Bonus: 15% Off Bundle
-                    </span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mt-1">
-                    <span className="text-2xl font-bold text-gold-300">${discountedBundle}</span>
-                    <span className="text-sm text-botanical-400 line-through">${bundlePrice}</span>
-                    <span className="text-xs text-emerald-400 font-semibold">+ Free Shipping</span>
+                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#E1B678] block">
+                    Oracle Completion: 15% Synergistic Courtesy
+                  </span>
+                  <div className="flex items-baseline gap-3 mt-1">
+                    <span className="text-3xl font-display text-[#E1B678]">${discountedBundle}</span>
+                    <span className="text-sm text-[#BCA891]/50 line-through">${bundlePrice}</span>
+                    <span className="text-xs text-[#C78D4B] font-mono font-medium">+ Expedited Delivery</span>
                   </div>
                 </div>
 
                 <button
                   onClick={handleAddBundle}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-botanical-950 font-bold text-sm tracking-wide shadow-lg shadow-gold-500/20 transition-all flex items-center justify-center gap-2 active:scale-95"
+                  className="btn-maison-primary text-xs flex items-center justify-center gap-2"
                 >
-                  <ShoppingBag className="w-4 h-4 text-botanical-950" />
-                  <span>Claim Ritual Bundle & Add to Cart</span>
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Acquire Prescribed Pair</span>
                 </button>
               </div>
             </div>

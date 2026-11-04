@@ -1,84 +1,93 @@
 import React from 'react';
-import { Sparkles, Flame, Moon, Sparkle, Heart } from 'lucide-react';
+import { Flame, Sparkle, Moon } from 'lucide-react';
 
 export const RitualGuideSection: React.FC = () => {
   const steps = [
     {
-      step: '01',
+      step: 'I',
       title: 'Warm & Activate',
-      icon: <Flame className="w-5 h-5 text-gold-400" />,
+      icon: <Flame className="w-5 h-5 text-[#C78D4B]" />,
       tagline: 'Unlock Heat-Activated Volatiles',
       description:
-        'Warm 1-2 tablespoons of oil in a small ceramic bowl placed in warm water for 2 minutes. Gentle heat lowers oil viscosity, allowing bioactive phytochemicals to penetrate deep into follicular matrices.',
-      proTip: 'Never microwave herbal oil directly; excessive heat destroys delicate vitamin structures.',
+        'Warm 1-2 tablespoons in a ceramic vessel rested in warm water for 2 minutes. Subtle thermal elevation lowers lipid viscosity, facilitating trans-follicular absorption of bioactive compounds.',
+      insight: 'Never microwave herbal lipid matrices directly; high heat cracks volatile terpenes.',
     },
     {
-      step: '02',
+      step: 'II',
       title: 'Shiro-Abhyanga Massage',
-      icon: <Sparkle className="w-5 h-5 text-gold-400" />,
-      tagline: 'Stimulate Cranial Marma Points',
+      icon: <Sparkle className="w-5 h-5 text-[#C78D4B]" />,
+      tagline: 'Cranial Marma Point Acupressure',
       description:
-        'Part hair into 4 quadrants. Using pads of fingertips or a wooden neem comb, massage in gentle, rhythmic circular motions for 7-10 minutes. Stimulates micro-capillary flow and calms the central nervous system.',
-      proTip: 'Focus gentle pressure on Adhipati marma (crown center) to release mental tension.',
+        'Section tresses into 4 quadrants. Using fingertip pads or seasoned neem wood, apply rhythmic clockwise circular strokes for 8-10 minutes to ignite cranial micro-capillary flow.',
+      insight: 'Apply conscious firm pressure on the Adhipati marma point (crown apex) to discharge cranial cortisol.',
     },
     {
-      step: '03',
+      step: 'III',
       title: 'Overnight Rejuvenation',
-      icon: <Moon className="w-5 h-5 text-gold-400" />,
-      tagline: 'Deep Cellular Follicle Repair',
+      icon: <Moon className="w-5 h-5 text-[#C78D4B]" />,
+      tagline: 'Deep Cuticle Restoration',
       description:
-        'Wrap hair in a warm silk turban or protect your pillow with a soft towel. Allow the 24 herbs to work undisturbed for a minimum of 2 hours, or ideally overnight, before cleansing with a botanical sulfate-free wash.',
-      proTip: 'Consistent practice 2-3 times per week delivers visible density within 60 days.',
+        'Encase hair in a pure mulberry silk bonnet or wrap in a warm linen towel. Allow the 24 herbs to macerate undisturbed overnight before cleansing with a botanical sulfate-free wash.',
+      insight: 'Consistent bi-weekly practice delivers measurable 88% follicle thickness in 60 days.',
     },
   ];
 
   return (
-    <section id="rituals" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-botanical-950 border-t border-gold-500/10">
+    <section id="rituals" className="py-28 px-4 sm:px-6 lg:px-8 relative bg-[#0A0705] border-t border-[#261A11]">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-botanical-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" />
-            <span>Sacred Ayurvedic Routine</span>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
+            <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#C78D4B] uppercase">
+              THE SACRED CEREMONY
+            </span>
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-botanical-50">
-            The 3-Step <span className="text-gold-gradient">Shiro-Abhyanga Ritual</span>
+
+          <h2 className="text-3xl sm:text-5xl font-display font-medium text-[#F6F0E8]">
+            The Classical <span className="text-amber-metallic italic">Shiro-Abhyanga Ceremony</span>
           </h2>
-          <p className="mt-3 text-botanical-200 text-sm sm:text-base">
-            In Ayurvedic medicine, hair oiling is not simply cosmetic—it is an intimate self-care ritual that grounds erratic Vata energy and nourishes cranial marma points.
+          <p className="mt-3 text-[#BCA891] text-sm sm:text-base leading-relaxed">
+            In Ayurvedic medicine, hair oiling is not a superficial vanity—it is a grounded ceremonial meditation that pacifies agitated Vata energy and fortifies cranial nerve endings.
           </p>
         </div>
 
+        {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((s) => (
             <div
               key={s.step}
-              className="glass-panel-gold rounded-3xl p-8 border border-gold-500/25 relative flex flex-col justify-between hover:border-gold-400/50 transition-all duration-300 group shadow-lg"
+              className="maison-card p-8 border border-[#261A11] hover:border-[#C78D4B]/40 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-3xl font-serif font-bold text-gold-400/80 group-hover:text-gold-300 transition-colors">
+                <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#261A11]">
+                  <span className="text-3xl font-display text-[#E1B678] font-bold">
                     {s.step}
                   </span>
-                  <div className="w-12 h-12 rounded-2xl bg-botanical-900/90 border border-gold-500/30 flex items-center justify-center">
+                  <div className="p-2.5 bg-[#17110C] border border-[#261A11]">
                     {s.icon}
                   </div>
                 </div>
 
-                <h3 className="text-xl font-serif font-bold text-botanical-100 mb-1">
-                  {s.title}
-                </h3>
-                <span className="text-xs uppercase font-semibold tracking-wider text-gold-400 block mb-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#C78D4B] block mb-2">
                   {s.tagline}
                 </span>
 
-                <p className="text-xs sm:text-sm text-botanical-300 leading-relaxed mb-6">
+                <h3 className="text-2xl font-display font-medium text-[#F6F0E8] mb-4">
+                  {s.title}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-[#BCA891] leading-relaxed mb-8">
                   {s.description}
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-botanical-900/90 border border-botanical-800 text-xs text-botanical-300">
-                <span className="text-gold-400 font-bold block mb-0.5">Ayurvedic Insight:</span>
-                <span>{s.proTip}</span>
+              <div className="p-4 bg-[#0A0705] border border-[#261A11] text-xs text-[#BCA891]">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#E1B678] block mb-1">
+                  Maison Classical Note:
+                </span>
+                <p className="leading-relaxed">{s.insight}</p>
               </div>
             </div>
           ))}

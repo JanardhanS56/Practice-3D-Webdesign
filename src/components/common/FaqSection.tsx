@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, Sparkles, HelpCircle } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 
 interface FaqItem {
   question: string;
@@ -8,14 +8,14 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
-    question: 'How quickly will I notice a reduction in hair shedding?',
+    question: 'How quickly will I notice a reduction in telogen hair shedding?',
     answer:
       'In our clinical observational panel of 120 participants, 82% observed a dramatic reduction in brush and shower shedding within 14-21 days of regular 3x/week Shiro-Abhyanga rituals. New vellus follicle sprouting (baby hairs) along sparse temple zones typically appears between days 45-60.',
   },
   {
-    question: 'Will this herbal oil leave my hair feeling greasy or heavy?',
+    question: 'Will this herbal elixir leave my hair feeling greasy or heavy?',
     answer:
-      'No. Unlike mineral oil or petroleum-based heavy serums, our formula uses cold-pressed virgin sesame and sweet almond oil bases which share an identical lipid profile to human scalp sebum. It absorbs cleanly into the follicle bulb without clogging pores or leaving an oily film when rinsed with a gentle shampoo.',
+      'No. Unlike mineral oil or petroleum-based heavy serums, our formula uses cold-pressed virgin sesame and sweet almond oil bases which share an identical lipid profile to human scalp sebum. It absorbs cleanly into the follicle bulb without clogging pores or leaving an oily film when cleansed with a gentle shampoo.',
   },
   {
     question: 'Can I safely use this on color-treated or bleached hair?',
@@ -42,18 +42,22 @@ export const FaqSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 relative bg-botanical-950 border-t border-gold-500/10">
+    <section className="py-28 px-4 sm:px-6 lg:px-8 relative bg-[#0A0705] border-t border-[#261A11]">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-botanical-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider mb-3">
-            <HelpCircle className="w-3.5 h-3.5 text-gold-400" />
-            <span>Ayurvedic Clarifications</span>
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
+            <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#C78D4B] uppercase">
+              PHARMACOPOEIA INQUIRIES
+            </span>
+            <span className="w-8 h-[1px] bg-[#C78D4B]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-botanical-50">
-            Frequently Asked <span className="text-gold-gradient">Questions</span>
+
+          <h2 className="text-3xl sm:text-5xl font-display font-medium text-[#F6F0E8]">
+            Frequently Documented <span className="text-amber-metallic italic">Inquiries</span>
           </h2>
-          <p className="mt-2 text-botanical-300 text-sm">
-            Everything you need to know about traditional cold-macerated hair care.
+          <p className="mt-3 text-[#BCA891] text-sm">
+            Everything you need to know about traditional 336-hour cold-macerated hair care.
           </p>
         </div>
 
@@ -63,18 +67,18 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={i}
-                className="glass-panel rounded-2xl border border-gold-500/20 overflow-hidden transition-all duration-200"
+                className="maison-card border border-[#261A11] overflow-hidden transition-all duration-300"
               >
                 <button
                   onClick={() => toggleFaq(i)}
                   className="w-full p-6 text-left flex items-center justify-between gap-4 group"
                 >
-                  <span className="font-serif font-bold text-base sm:text-lg text-botanical-100 group-hover:text-gold-300 transition-colors">
+                  <span className="font-display font-medium text-lg sm:text-xl text-[#F6F0E8] group-hover:text-[#E1B678] transition-colors">
                     {faq.question}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-full bg-botanical-900 border border-gold-500/30 flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-gold-500/20 text-gold-300' : 'text-botanical-400'
+                    className={`w-7 h-7 border border-[#261A11] flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 border-[#C78D4B] text-[#E1B678]' : 'text-[#BCA891]'
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -82,7 +86,7 @@ export const FaqSection: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-botanical-300 leading-relaxed border-t border-botanical-850 animate-fadeIn">
+                  <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-[#BCA891] leading-relaxed border-t border-[#261A11] animate-fadeIn">
                     {faq.answer}
                   </div>
                 )}

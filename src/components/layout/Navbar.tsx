@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Search, Menu, X, Sparkles, Leaf, ShieldCheck, Heart } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X, Compass, ShieldCheck } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 interface NavbarProps {
@@ -21,55 +21,53 @@ export const Navbar: React.FC<NavbarProps> = ({ onSearchOpen }) => {
 
   const navLinks = [
     { label: '3D Experience', href: '#hero' },
-    { label: 'Ayurvedic Botanicals', href: '#ingredients' },
-    { label: 'Shop Elixirs', href: '#shop' },
-    { label: 'Similar Essentials', href: '#similar-products' },
-    { label: 'Hair Diagnostic', href: '#quiz' },
-    { label: 'Hair Ritual', href: '#rituals' },
-    { label: 'Reviews', href: '#reviews' },
+    { label: 'Sacred Botanicals', href: '#ingredients' },
+    { label: 'The Dispensary', href: '#shop' },
+    { label: 'Ritual Companions', href: '#similar-products' },
+    { label: 'Scalp Oracle', href: '#quiz' },
+    { label: 'Ceremony', href: '#rituals' },
+    { label: 'Ledger', href: '#reviews' },
   ];
 
   return (
     <>
-      {/* Top Announcement Bar */}
-      <div className="bg-gradient-to-r from-botanical-900 via-botanical-800 to-botanical-900 border-b border-gold-500/20 text-xs py-2 px-4 text-center tracking-wider text-gold-300 font-medium flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 text-gold-400 animate-pulse" />
-        <span>Complimentary Handcrafted Neem Wood Comb on all orders above $50</span>
-        <span className="hidden md:inline text-gold-500/60">• Use code <strong>VEDA15</strong> for 15% off</span>
-        <Sparkles className="w-3.5 h-3.5 text-gold-400 animate-pulse" />
+      {/* Top Provenance Ribbon */}
+      <div className="bg-[#17110C] border-b border-[#261A11] text-[10px] py-2 px-4 text-center font-mono tracking-[0.2em] text-[#BCA891] uppercase flex items-center justify-center gap-3">
+        <span>Taila Paka Vidhi • 336-Hour Cold Copper Maceration</span>
+        <span className="hidden md:inline text-[#C78D4B]">• Courtesy Code <strong>VEDA15</strong> for 15% Courtesy</span>
       </div>
 
       {/* Main Sticky Navbar */}
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+        className={`sticky top-0 z-40 w-full transition-all duration-500 ${
           isScrolled
-            ? 'glass-panel shadow-lg shadow-black/40 py-3 border-b border-gold-500/20'
-            : 'bg-botanical-950/70 backdrop-blur-md py-4'
+            ? 'bg-[#0A0705]/90 backdrop-blur-md py-3 border-b border-[#261A11]'
+            : 'bg-[#0A0705]/50 backdrop-blur-sm py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full border border-gold-400/40 bg-botanical-900 flex items-center justify-center shadow-inner group-hover:border-gold-400 transition-colors">
-              <Leaf className="w-5 h-5 text-gold-400 group-hover:rotate-12 transition-transform duration-300" />
+            <div className="w-8 h-8 border border-[#C78D4B]/50 bg-[#17110C] flex items-center justify-center transition-colors group-hover:border-[#E1B678]">
+              <span className="text-xs font-serif text-[#E1B678] font-bold">V</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-serif tracking-widest text-gold-gradient font-bold leading-none">
+              <span className="text-xl sm:text-2xl font-display tracking-[0.08em] text-[#F6F0E8] font-medium leading-none">
                 VEDAROOTS
               </span>
-              <span className="text-[10px] tracking-[0.25em] text-botanical-300 uppercase font-medium mt-0.5">
-                Ayurvedic Alchemy
+              <span className="text-[9px] font-mono tracking-[0.3em] text-[#BCA891] uppercase mt-1">
+                MAISON DE BOTANIQUE
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium tracking-wide">
+          {/* Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-7 text-xs font-sans tracking-[0.12em] uppercase font-medium">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-botanical-200 hover:text-gold-300 transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gold-400 hover:after:w-full after:transition-all after:duration-300"
+                className="text-[#BCA891] hover:text-[#E1B678] transition-colors relative py-1"
               >
                 {link.label}
               </a>
@@ -81,58 +79,50 @@ export const Navbar: React.FC<NavbarProps> = ({ onSearchOpen }) => {
             {/* Search Trigger */}
             <button
               onClick={onSearchOpen}
-              className="p-2 text-botanical-200 hover:text-gold-300 rounded-full hover:bg-botanical-900 transition-colors"
+              className="p-2 text-[#BCA891] hover:text-[#E1B678] transition-colors"
               aria-label="Search herbs & elixirs"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4" />
             </button>
 
             {/* Cart Trigger */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold-500/30 bg-botanical-900/80 hover:bg-botanical-800 text-gold-300 transition-all hover:border-gold-400 group"
+              className="relative flex items-center gap-2 px-3 py-1.5 border border-[#C78D4B]/30 bg-[#17110C] hover:border-[#C78D4B] text-[#E1B678] transition-all group"
               aria-label="Open Cart"
             >
-              <ShoppingBag className="w-4 h-4 text-gold-400 group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-semibold tracking-wider hidden sm:inline">CART</span>
-              <span className="w-5 h-5 rounded-full bg-gold-500 text-botanical-950 font-bold text-xs flex items-center justify-center">
+              <ShoppingBag className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-mono tracking-widest hidden sm:inline">CART</span>
+              <span className="w-4 h-4 bg-[#C78D4B] text-[#0A0705] font-mono font-bold text-[10px] flex items-center justify-center">
                 {totalItems}
               </span>
             </button>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Menu */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-botanical-200 hover:text-gold-300 lg:hidden rounded-lg hover:bg-botanical-900"
+              className="p-2 text-[#BCA891] hover:text-[#E1B678] lg:hidden"
               aria-label="Toggle mobile menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden glass-panel border-b border-gold-500/20 px-4 pt-3 pb-6 animate-fadeIn">
-            <div className="flex flex-col space-y-3">
+          <div className="lg:hidden bg-[#0A0705] border-b border-[#261A11] px-4 pt-4 pb-6 animate-fadeIn">
+            <div className="flex flex-col space-y-3 font-mono text-xs uppercase tracking-widest">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 text-base text-botanical-100 hover:text-gold-300 hover:bg-botanical-900/60 rounded-md transition-colors"
+                  className="px-2 py-2 text-[#BCA891] hover:text-[#E1B678] transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="pt-3 border-t border-botanical-800 flex justify-between items-center text-xs text-botanical-300">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-gold-400" /> 100% Ayurvedic Certified
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Heart className="w-4 h-4 text-rose-400" /> Cruelty-Free
-                </span>
-              </div>
             </div>
           </div>
         )}
