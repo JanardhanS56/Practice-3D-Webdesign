@@ -10,7 +10,7 @@ export interface Product {
   volume: string;
   badge?: string;
   category: 'growth' | 'repair' | 'anti-dandruff' | 'scalp-care';
-  hairType: ('all' | 'straight' | 'wavy' | 'curly' | 'coily')[];
+  hairType: ('all' | 'straight' | 'wavy' | 'curly' | 'coily' | 'damaged')[];
   description: string;
   keyBenefits: string[];
   activeIngredients: string[];
